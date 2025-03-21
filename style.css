@@ -1,0 +1,98 @@
+/* === Global Styling === */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* === Navbar Styling === */
+.navbar {
+    background-color: #28a745; /* Green */
+    padding: 15px 0;
+}
+.navbar-brand {
+    font-size: 1.7rem;
+    font-weight: bold;
+    color: white !important;
+}
+.navbar-nav .nav-link {
+    color: white !important;
+    font-weight: bold;
+    margin-right: 10px;
+}
+.navbar-nav .btn-signup {
+    background-color: #ffc107; /* Bright Yellow */
+    color: black;
+    font-weight: bold;
+    border-radius: 20px;
+}
+.navbar-nav .btn-signup:hover {
+    background-color: #ffca2c;
+}
+
+/* === Search Bar === */
+.form-control {
+    border-radius: 25px;
+    padding: 10px;
+}
+.btn-outline-light {
+    border-radius: 25px;
+    color: white;
+    border-color: white;
+}
+.btn-outline-light:hover {
+    background-color: white;
+    color: #28a745;
+}
+
+/* === Course Cards === */
+.card {
+    border: none;
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+.card:hover {
+    transform: scale(1.05);
+}
+.card-body {
+    text-align: center;
+}
+.btn-success {
+    border-radius: 20px;
+    background-color: #19702d;
+    border: none;
+}
+.btn-success:hover {
+    background-color: #1b6d2d;
+}
+
+/* === Login/Signup Forms === */
+.form-container {
+    max-width: 400px;
+    margin: auto;
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.btn-primary {
+    background-color: #186f2d;
+    border: none;
+    width: 100%;
+}
+.btn-primary:hover {
+    background-color: #1b6e2d;
+}
+
+/* === Footer === */
+footer {
+    background-color: #f8f9fa;
+    padding: 15px 0;
+    text-align: center;
+}

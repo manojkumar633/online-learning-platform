@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses - LearnIT</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        .navbar {
+            padding: 15px 0;
+            background-color: #28a745;
+        }
+
+        .navbar-brand,
+        .navbar-nav .nav-link {
+            color: white !important;
+            font-weight: bold;
+        }
+
+        .form-control {
+            border-radius: 25px;
+            padding: 10px;
+        }
+
+        .btn-outline-light {
+            border-radius: 25px;
+            color: white;
+            border-color: white;
+        }
+
+        .btn-outline-light:hover {
+            background-color: white;
+            color: #28a745;
+        }
+
+        .btn-success {
+            border-radius: 20px;
+            background-color: #28a745;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+        }
+
+        .card {
+            transition: transform 0.3s ease-in-out;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">LearnIT</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Search Bar in Center -->
+                <form class="d-flex mx-auto">
+                    <input class="form-control me-2" type="search" id="searchInput" placeholder="Search courses...">
+                    <button class="btn btn-outline-light" type="button" onclick="searchCourses()">Search</button>
+                </form>
+                <ul class="navbar-nav ms-auto" id="navLinks">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="courses.html">Courses</a></li>
+                    <li class="nav-item" id="loginLink"><a class="nav-link" href="login.html">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Course Page Header -->
+    <div class="container mt-4">
+        <h2 class="text-center text-success">Explore Our Courses</h2>
+
+        <div class="row" id="courseList">
+            <!-- Courses will be added dynamically here -->
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Display Logout if logged in
+            if (localStorage.getItem("isLoggedIn") === "true") {
+                const navLinks = document.getElementById("navLinks");
+                const loginLink = document.getElementById("loginLink");
+                if (loginLink) loginLink.remove();
+
+                let logoutItem = document.createElement("li");
+                logoutItem.className = "nav-item";
+                logoutItem.innerHTML = `<a class="nav-link" href="#" id="logoutLink">Logout</a>`;
+                navLinks.appendChild(logoutItem);
+
+                document.getElementById("logoutLink").addEventListener("click", function () {
+                    localStorage.removeItem("isLoggedIn");
+                    window.location.href = "login.html";
+                });
+            }
+
+            displayCourses();
+        });
+
+        const courses = [
+            { id: 1, title: "JavaScript Basics", instructor: "John Doe", price: "$10" },
+            { id: 2, title: "Python for Beginners", instructor: "Jane Smith", price: "$15" },
+            { id: 3, title: "ReactJS Fundamentals", instructor: "Alice Johnson", price: "$20" },
+            { id: 4, title: "Django for Web Dev", instructor: "Mark Lee", price: "$25" },
+            { id: 5, title: "Java Spring Boot", instructor: "Michael Scott", price: "$30" },
+            { id: 6, title: "Data Science with Python", instructor: "Sara Connor", price: "$35" }
+        ];
+
+        function displayCourses(filteredCourses = courses) {
+            let courseList = document.getElementById("courseList");
+            courseList.innerHTML = "";
+
+            filteredCourses.forEach(course => {
+                let courseCard = document.createElement("div");
+                courseCard.className = "col-md-4 mb-4";
+                courseCard.innerHTML = `
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">${course.title}</h5>
+                        <p><strong>Instructor:</strong> ${course.instructor}</p>
+                        <p><strong>Price:</strong> ${course.price}</p>
+                        <a href="course-details.html?id=${course.id}" class="btn btn-success">View Course</a>
+                    </div>
+                </div>
+            `;
+                courseList.appendChild(courseCard);
+            });
+        }
+
+        function searchCourses() {
+            let searchQuery = document.getElementById("searchInput").value.toLowerCase();
+            let filteredCourses = courses.filter(course =>
+                course.title.toLowerCase().includes(searchQuery) ||
+                course.instructor.toLowerCase().includes(searchQuery)
+            );
+            displayCourses(filteredCourses);
+        }
+    </script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
